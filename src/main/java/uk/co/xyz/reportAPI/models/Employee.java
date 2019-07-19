@@ -3,29 +3,31 @@ package uk.co.xyz.reportAPI.models;
 import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 
-import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Positive;
-import javax.validation.constraints.Size;
+import javax.validation.constraints.*;
 
 public class Employee {
 
     @Id
     public ObjectId _id;
 
-    @NotNull(message = "{user.firstName.notNull}")
-    @Size(min = 1, max = 60, message = "{user.firstName.size}")
+    @NotNull(message = "{user.field.notnull}")
+    @Size(min = 3, max = 20, message = "{user.field.invalid}")
     public String firstName;
 
-    @NotNull
+    @Size(min = 3, max = 20, message = "{user.field.invalid}")
     public String middleName;
 
-    @NotNull
+    @NotNull(message = "{user.field.notnull}")
+    @Size(min = 3, max = 20, message = "{user.field.invalid}")
     public String lastName;
 
-    @Positive
+    @NotNull(message = "{user.field.notnull}")
+    @Min(value=16, message = "{user.field.invalid}")
+    @Max(value=65, message = "{user.field.invalid}")
     public int age;
 
-
+    @NotNull(message = "{user.field.notnull}")
+    @Pattern(regexp = "^male|female$",message = "{user.field.invalid}")
     public String gender;
 
     public Employee() {    }
